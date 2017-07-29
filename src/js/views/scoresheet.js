@@ -54,17 +54,23 @@ define('views/scoresheet',[
             }
 
             $scope.load = function() {
-                return $challenge.load($scope.settings.challenge).then(function(defs) {
-                    $scope.field = defs.field;
-                    $scope.missions = defs.missions;
-                    $scope.strings = defs.strings;
-                    $scope.objectiveIndex = defs.objectiveIndex;
-                    angular.forEach($scope.missions,process);
-                }).catch(function() {
-                    //could not read field locally or remotely
-                    $scope.errorMessage = 'Could not load field, please configure host in settings';
+                if ($scope.settings.challenge == null)
+                {
+                    $scope.errorMessage = 'Please configure chalenge in settings';
                     $window.alert($scope.errorMessage);
-                });
+                }
+                else
+                    return $challenge.load($scope.settings.challenge).then(function(defs) {
+                        $scope.field = defs.field;
+                        $scope.missions = defs.missions;
+                        $scope.strings = defs.strings;
+                        $scope.objectiveIndex = defs.objectiveIndex;
+                        angular.forEach($scope.missions,process);
+                    }).catch(function() {
+                        //could not read field locally or remotely
+                        $scope.errorMessage = 'Could not load field, please configure host in settings';
+                        $window.alert($scope.errorMessage);
+                    });
             };
 
             $scope.getString = function(key) {
