@@ -17,7 +17,7 @@ define('controllers/TeamImportDialogController',[
                 }
                 lines = lines.map(function(line) {
                     //split by tab character
-                    return line.split(/\t/);
+                    return line.split(/[\t\,]/);
                 });
                 //try to guess names and number columns
                 $scope.importNumberColumn = 1;
