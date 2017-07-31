@@ -1,5 +1,5 @@
     <div class="fll-dialog-shim" ng-controller="TeamImportDialogController" ng-show="dialogVisible">
-        <div class="fll-dialog" id="teamImportDialog">
+        <div class="fll-dialog big" id="teamImportDialog">
             <h1>
                 <div class="fll-dialog-back material-icons" ng-click="cancel()">arrow_back</div>
                 <span class="header-text">Import teams</span>
@@ -10,33 +10,42 @@
                     <p>
                         Paste a team list below
                     </p>
-                    <p>
-                        <textarea name="" ng-model="importRaw"></textarea>
-                    </p>
-                    <p>
-                        <label>
-                            <input type="checkbox" ng-model="importHeader">
-                            Data contains header
-                        </label>
-                    </p>
-                    <p>
-                        Number column
-                        <input type="text" ng-model="importNumberColumn" size="3">
-                        ({{importNumberExample}})
-                    </p>
-                    <p>
-                        Name column
-                        <input type="text" ng-model="importNameColumn" size="3">
-                        ({{importNameExample}})
-                    </p>
-
-                    <table>
-                        <tr ng-repeat="line in importLines">
-                            <td ng-repeat="field in line">
+                    <div>
+                        <div class="two-columns">
+                            <textarea class="big-text-area" name="" ng-model="importRaw"></textarea>
+                        </div>
+                        <div class="two-columns">
+                            <p>
+                                <label>
+                                    <input type="checkbox" ng-model="importHeader">
+                                    Data contains header
+                                </label>
+                            </p>
+                            <p>
+                                Number column
+                                <input class="narrow-input" type="text" ng-model="importNumberColumn" size="1">
+                            </p>
+                            <p>
+                                Name column
+                                <input class="narrow-input" type="text" ng-model="importNameColumn" size="1">
+                            </p>
+                        </div>
+                    </div>
+                    This is the list that will be created:
+                    <br/>
+                    <table class="display-table">
+                        <tr>
+                            <td ng-repeat="title in importColumnNames track by $index">
+                                {{title}}
+                            </td>
+                        </tr>
+                        <tr ng-repeat="line in importLines track by $index">
+                            <td ng-repeat="field in line track by $index">
                                 {{field}}
                             </td>
                         </tr>
                     </table>
+                    <p/>
                     <button class="btn" ng-click="ok()">Ok</button>
                     <button class="btn" ng-click="cancel()">Cancel</button>
                 </div>

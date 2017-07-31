@@ -23,7 +23,15 @@
     box-shadow: 0 16px 48px rgba(0,0,0,0.6);
     overflow: hidden;
 }
-
+.fll-dialog.big {
+    width: 800px;
+    height: 700px;
+    margin-left: -400px;
+    margin-top: -380px;
+}
+.fll-dialog.big .modal-body {
+    max-height: 100%
+}
 .fll-dialog h1 {
     margin: 0;
     line-height: 30px;
@@ -55,6 +63,32 @@
     bottom: 0;
     left: 0;
 }
+
+.fll-dialog .narrow-input {
+    width: unset;
+}
+
+.fll-dialog .big-text-area {
+    width: 85%;
+    height: 200px;
+}
+
+.fll-dialog .two-columns {
+    width: 48%;
+    display: inline-grid;
+}
+
+.fll-dialog .display-table {
+    width: unset;
+} 
+
+.fll-dialog .display-table td {
+    border: #ccc 1px solid;
+} 
+
+.fll-dialog .display-table .empty-line td {
+    padding: 0.5em;
+} 
 
 /* don't display back arrow */
 .fll-dialog-back {

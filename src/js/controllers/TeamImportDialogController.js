@@ -9,6 +9,9 @@ define('controllers/TeamImportDialogController',[
         function ($scope, $handshake) {
             var defer;
 
+            $scope.importNumberColumn = 1;
+            $scope.importNameColumn = 2;
+
             function parseData(data) {
                 //parse raw import, split lines
                 var lines = data?data.split(/[\n\r]/):[];
@@ -20,8 +23,13 @@ define('controllers/TeamImportDialogController',[
                     return line.split(/[\t\,]/);
                 });
                 //try to guess names and number columns
-                $scope.importNumberColumn = 1;
-                $scope.importNameColumn = 2;
+                $scope.importColumnNames =
+                    new Array(Math.max($scope.importNumberColumn, 
+                                       $scope.importNameColumn)
+                              + 1)
+                        .join(',').split(',');
+                $scope.importColumnNames[$scope.importNumberColumn - 1] = "Team #";
+                $scope.importColumnNames[$scope.importNameColumn - 1] = "Team Name";
 
                 if (lines[0]) {
                     $scope.importNumberExample = lines[0][$scope.importNumberColumn -1];
